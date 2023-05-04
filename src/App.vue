@@ -1,13 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { Icon } from "@iconify/vue"
+
 </script>
 
 <template>
   <header>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/tattooer">About</RouterLink>
     </nav>
     <div class="userIcon">
       <Icon icon="mdi:user" class="user"/>

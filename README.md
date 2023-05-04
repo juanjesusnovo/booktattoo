@@ -27,3 +27,7 @@ npm run dev
 ```sh
 npm run build
 ```
+### Elementos utilizados
+```sh
+https://dev.to/luvejo/how-to-build-a-carousel-from-scratch-using-vue-js-4ki0
+```

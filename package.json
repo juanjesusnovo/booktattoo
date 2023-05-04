@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "vue": "^3.2.47",
+    "vue-carousel": "^0.18.0",
+    "vue-concise-slider": "^4.2.5",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

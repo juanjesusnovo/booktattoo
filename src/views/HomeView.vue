@@ -7,13 +7,13 @@
       <div class="buscador">
         <input type="text" placeholder="Busque tatuadores!">
       </div>
-      <div class="estilos">
+      <div v-if="!mostrar" class="estilos">
         <label>Japones<input type="checkbox" class="check"></label>
         <label>Japones<input type="checkbox" class="check"></label>
         <label>Japones<input type="checkbox" class="check"></label>
         <label>Japones<input type="checkbox" class="check"></label>
       </div>
-      <div v-if="mostrar" class="estilos" :disabled="mostrar">
+      <div v-else class="estilos" :disabled="mostrar">
         <label>Japones<input type="checkbox" class="check"></label>
         <label>Japones<input type="checkbox" class="check"></label>
         <label>Japones<input type="checkbox" class="check"></label>
@@ -30,15 +30,28 @@
       <label class="more" v-if="!mostrar"><Icon icon="material-symbols:expand-more"/><input type="checkbox" v-model="mostrar" class="check"></label>
       <label class="more" v-if="mostrar"><Icon icon="material-symbols:expand-less" /><input type="checkbox" v-model="mostrar" class="check"></label>
     </div>
+    <div class="map">
+      <div class="mapa"></div>
+    </div>
+    <!-- Carrusel -->
+    <div class="carousel">
+      <Carousel :cards="this.cards"/>
+    </div>
   </main>
 </template>
-<script>
+<script> 
+
+  import Carousel from "../components/Carousel.vue";
+
   export default{
-    name: "Home",
+    name: "home",
     data: () => ({
-      mostrar:false
-    })
-  }
+        mostrar: false,
+        position: 1,
+        cards: ["1","2","3","4","5","6","7","8"],
+    }),
+    methods: {}
+}
 </script>
 <style scoped>
   main{
@@ -55,6 +68,7 @@
   }
   input{
     border-radius: 10px;
+    margin: 10px;
   }
   .check[type="checkbox"]{
     display: none;
@@ -80,5 +94,24 @@
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+  .map{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .mapa{
+    width: 205px;
+    height: 147px;
+    background-color: #D9D9D9;
+  }
+  .carousel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
   }
 </style>
