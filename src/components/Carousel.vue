@@ -1,13 +1,16 @@
+<script setup>
+  import { Icon } from "@iconify/vue"
+</script>
 <template>
   <div class="carousel">
     <div class="inner" ref="inner" :style="innerStyles">
-      <div class="card" v-for="card in cards" :key="card">
-        {{ card }}
+      <div class="tattooer" v-for="tattooer in tattooers" :key="tattooer">
+        {{ tattooer }}
       </div>
     </div>
   </div>
-  <button @click="prev">prev</button>
-  <button @click="next">next</button>
+  <button @click="prev" class="left"><Icon icon="material-symbols:chevron-left" /></button>
+  <button @click="next" class="right"><Icon icon="material-symbols:chevron-right" /></button>
 </template>
 
 <script>
@@ -20,7 +23,7 @@ export default {
     }
   },
   props :{
-    cards: [ String ]
+    tattooers: [ String ]
   },
   mounted () {
     this.setStep()
@@ -29,16 +32,16 @@ export default {
   methods: {
     setStep () {
       const innerWidth = this.$refs.inner.scrollWidth
-      const totalCards = this.cards.length
-      this.step = `${innerWidth / totalCards}px`
+      const totaltattooers = this.tattooers.length
+      this.step = `${innerWidth / totaltattooers}px`
     },
     next () {
       if (this.transitioning) return
       this.transitioning = true
       this.moveLeft()
       this.afterTransition(() => {
-        const card = this.cards.shift()
-        this.cards.push(card)
+        const tattooer = this.tattooers.shift()
+        this.tattooers.push(tattooer)
         this.resetTranslate()
         this.transitioning = false
       })
@@ -48,8 +51,8 @@ export default {
       this.transitioning = true
       this.moveRight()
       this.afterTransition(() => {
-        const card = this.cards.pop()
-        this.cards.unshift(card)
+        const tattooer = this.tattooers.pop()
+        this.tattooers.unshift(tattooer)
         this.resetTranslate()
         this.transitioning = false
       })
@@ -84,44 +87,51 @@ export default {
 </script>
 
 <style>
-.carousel {
-  width: 100%;
-  overflow: hidden;
-}
-.inner {
-  transition: transform 0.2s;
-  white-space: nowrap;
-}
-.card {
-  width: 130px;
-  display: inline-flex; 
-  padding: 5px;
+  .carousel {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    padding: 10px;
+  }
+  .inner {
+    transition: transform 0.2s;
+    white-space: nowrap;
+  }
+  .tattooer {
+    width: 130px;
+    display: inline-flex; 
+    padding: 5px;
+    /* optional */
+    height: 113px;
+    background-color: #D9D9D9;
+    color: white;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+  }
   /* optional */
-  height: 113px;
-  background-color: #39b1bd;
-  color: white;
-  border-radius: 4px;
-  align-items: center;
-  justify-content: center;
-}
-/* optional */
-button {
-  margin-right: 5px;
-  margin-top: 10px;
-}
+  .right{
+    margin-right: 5px;
+    margin-top: 10px;
+    border-radius: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+  }
+  .left{
+    margin-right: 5px;
+    margin-top: 10px;
+    border-radius: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 10px;
+  }
 </style>
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-vue-3-carousel-tutorial/Carousel.vue at options-api · luvejo/vue-3-carousel-tutorial

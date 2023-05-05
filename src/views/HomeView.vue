@@ -34,8 +34,13 @@
       <div class="mapa"></div>
     </div>
     <!-- Carrusel -->
+    <h2>Mejores tatuadores!</h2>
     <div class="carousel">
-      <Carousel :cards="this.cards"/>
+      <Carousel :tattooers="this.cards"/>
+    </div>
+    <h2>Nuevos tatuadores!</h2>
+    <div class="carousel">
+      <Carousel :tattooers="this.cards"/>
     </div>
   </main>
 </template>
@@ -54,8 +59,12 @@
 }
 </script>
 <style scoped>
+  @font-face{
+    font-family: inter;
+    src: url("../assets/inter.ttf");
+  }
   main{
-    min-height: 750px;
+    min-height: 800px;
   }
   .filter{
     background-color: #D9D9D9;
@@ -79,6 +88,7 @@
     margin: 6px;
     width: 20%;
     text-align: center;
+    font-size: 15px;
   }
   .more {
     background-color: #FFFFFF;
@@ -101,6 +111,7 @@
     margin-top: 40px;
     display: flex;
     justify-content: center;
+    margin-bottom: 40px;
   }
   .mapa{
     width: 205px;
@@ -113,5 +124,15 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+  }
+  .buscador{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  h2{
+    margin-left: 17px;
+    font-size: 17px;
+    font-family: inter;
   }
 </style>

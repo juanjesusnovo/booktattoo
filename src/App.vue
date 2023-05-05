@@ -14,9 +14,9 @@ import { Icon } from "@iconify/vue"
       <Icon icon="mdi:user" class="user"/>
     </div>
   </header>
-
-  <RouterView />
-
+  <main>
+    <RouterView />
+  </main>
   <footer>
     <nav class="socialmedia">
       <Icon icon="mdi:twitter" class="icon"/>
@@ -31,6 +31,13 @@ import { Icon } from "@iconify/vue"
 </template>
 
 <style scoped>
+  @font-face{
+    font-family: inter;
+    src: url("../assets/inter.ttf");
+  }
+  *{
+    font-family: inter;
+  }
   header{
     background-color: #696969;
     width: 100%;
@@ -76,5 +83,11 @@ import { Icon } from "@iconify/vue"
   }
   .infocookies{
     width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  main{
+    width: 100%;
   }
 </style>
