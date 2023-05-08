@@ -31,7 +31,9 @@
       <label class="more" v-if="mostrar"><Icon icon="material-symbols:expand-less" /><input type="checkbox" v-model="mostrar" class="check"></label>
     </div>
     <div class="map">
-      <div class="mapa"></div>
+      <div class="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d25650.07356993595!2d-6.2117466!3d36.5237407!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ses!4v1683526776866!5m2!1ses-419!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
     <!-- Carrusel -->
     <h2>Mejores tatuadores!</h2>
