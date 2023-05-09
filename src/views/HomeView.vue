@@ -7,28 +7,26 @@
       <div class="buscador">
         <input type="text" placeholder="Busque tatuadores!">
       </div>
-      <div v-if="!mostrar" class="estilos">
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-      </div>
-      <div v-else class="estilos" :disabled="mostrar">
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-        <label>Japones<input type="checkbox" class="check"></label>
-      </div>
-      <label class="more" v-if="!mostrar"><Icon icon="material-symbols:expand-more"/><input type="checkbox" v-model="mostrar" class="check"></label>
-      <label class="more" v-if="mostrar"><Icon icon="material-symbols:expand-less" /><input type="checkbox" v-model="mostrar" class="check"></label>
+        <div class="estilos">
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>  
+        </div>
+      <transition name="fade">
+        <div v-if="mostrar" class="estilos">
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+          <label>Japones<input type="checkbox" class="check"></label>
+        </div>
+      </transition>
+      <label class="more" v-if="!mostrar" id="filtro_toggle"><Icon icon="material-symbols:expand-more"/><input type="checkbox" v-model="mostrar" class="check"></label>
+      <label class="more" v-if="mostrar" id="filtro_toggle"><Icon icon="material-symbols:expand-less" /><input type="checkbox" v-model="mostrar" class="check"></label>
     </div>
     <div class="map">
       <div class="mapa">
@@ -89,6 +87,7 @@
     border-radius: 10px;
     margin: 6px;
     width: 20%;
+    height: 20px;
     text-align: center;
     font-size: 15px;
   }
@@ -97,27 +96,33 @@
     border-radius: 20px;
     margin: 6px;
     width: 18px;
+    height: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .estilos{
     width: 100%;
-    padding: 10px;
+    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
+  .fade-enter-active, .fade-leave-active{
+    transition: opacity .3s;
+  }
+  .fade-enter, .fade-leave-to{
+    opacity: 0;
+  }
   .map{
     width: 100%;
-    margin-top: 40px;
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
   }
   .mapa{
-    width: 205px;
-    height: 147px;
+    width: 100%;
+    height: 20vh;
     background-color: #D9D9D9;
   }
   .carousel{
