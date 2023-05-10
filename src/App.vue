@@ -8,7 +8,7 @@ import { Icon } from "@iconify/vue"
   <header>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/tattooer">About</RouterLink>
+      <RouterLink to="/Mybooks">About</RouterLink>
     </nav>
     <div class="userIcon">
       <Icon icon="mdi:user" class="user"/>

@@ -64,7 +64,7 @@
     src: url("../assets/inter.ttf");
   }
   main{
-    min-height: 800px;
+    min-height: 90vh;
   }
   .filter{
     background-color: #D9D9D9;

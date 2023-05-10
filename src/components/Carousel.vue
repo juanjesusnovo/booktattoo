@@ -1,10 +1,11 @@
 <script setup>
   import { Icon } from "@iconify/vue"
+  import router from "../router/index" 
 </script>
 <template>
   <div class="carousel">
     <div class="inner" ref="inner" :style="innerStyles">
-      <div class="tattooer" v-for="tattooer in tattooers" :key="tattooer">
+      <div class="tattooer" v-for="tattooer in tattooers" :key="tattooer" @click="tattooerView">
         {{ tattooer }}
       </div>
     </div>
@@ -81,6 +82,9 @@ export default {
         transition: 'none',
         transform: `translateX(-${this.step})`
       }
+    },
+    tattooerView () {
+      router.push("/tattooer")
     }
   }
 }

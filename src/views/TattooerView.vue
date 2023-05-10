@@ -7,17 +7,13 @@
         <h2>Tatuador</h2>
     </section>
     <section>
-        <nav>
-            <a href="">Detalles</a>
-            <a href="">Portfolio</a>
-            <a href="">Pide cita</a>
-        </nav>
+        <NavigationTattooer />
     </section>
     <section class="info">
         <h3>Quienes somos</h3>
-        <p>Texto informativo sobre el tatuador .......................................... ................................................. ...................................................................................................</p>
+        <p>Texto informativo sobre el tatuador ............................................................................................................................ ..................................................................</p>
         <h3>Nuestros estilos favoritos</h3>
-        <p>Texto informativo sobre el tatuador .......................................... .................................................. ..................................................................................................</p>
+        <p>Texto informativo sobre el tatuador ............................................................................................................................. .................................................................</p>
     </section>
     <section class="tattooers">
         <h3>Tatuadores</h3>
@@ -38,15 +34,30 @@
             <p>678678687</p>
             <Icon icon="mdi:telephone" class="telephone"/>
         </div>
+        <p class="redes">Nuestras redes</p>
+        <div class="social">
+            <div>
+                <Icon icon="mdi:twitter" class="social_icon"/> <p class="social_user">@twitter</p>
+            </div>
+            <div>
+                <Icon icon="ph:instagram-logo-fill" class="social_icon"/> <p class="social_user">@instagram</p>
+            </div>
+            <div>
+                <Icon icon="ic:baseline-facebook" class="social_icon"/> <p class="social_user">@facebook</p>
+            </div>
+        </div>
     </section>
 </template>
 <script>
+import NavigationTattooer from "../components/NavigationTattooer.vue";
+
 export default{
-    data (){
-        return{
+    data() {
+        return {
             tattooers: ["Jose", "Manuel", "Pedro"]
-        }
-    }
+        };
+    },
+    components: { NavigationTattooer }
 }
 </script>
 <style scoped>
@@ -57,16 +68,6 @@ export default{
     }
     h2{
         padding: 10px;
-    }
-    nav{
-        width: 100%;
-        height: 53px;
-        border: 1px solid #D9D9D9;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        margin-bottom: 10px;
     }
     .info{
         padding: 10px;
@@ -79,7 +80,8 @@ export default{
         font-size: 22px;
     }
     .info p{
-        margin-left: 10px;
+        width: 100%;
+        padding: 8px;
     }
     .a_tattooers{
         border: 1px solid #D9D9D9;
@@ -116,8 +118,6 @@ export default{
         flex-direction: row;
         flex-wrap: wrap;
     }
-    .tattooers{
-    }
     .tattooers h3{
         padding: 10px;
         font-size: 22px;
@@ -132,9 +132,10 @@ export default{
         justify-content: space-between;
         min-height: 6vh;
         align-items: center;
+        margin-bottom: 10px;
     }
     .tfno p{
-        width: 45%;
+        width: 41%;
         text-align: center;
         font-size: 22px;
     }
@@ -142,5 +143,31 @@ export default{
         width: 24px;
         height: 24px;
         margin-right: 40px;
+    }
+    .redes{
+        font-size: 18px;
+        padding: 10px;
+        margin-left: 10px;
+    }
+    .social{
+        border: 1px solid #D9D9D9;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 35px;
+    }
+    .social div{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+    }
+    .social_icon{
+        width: 22px;
+        height: 22px;
+    }
+    .social_user{
+        font-size: 18px;
+        width: 50%;
     }
 </style>
