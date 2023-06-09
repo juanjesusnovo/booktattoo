@@ -9,20 +9,20 @@
       </div>
         <div class="estilos">
           <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>  
+          <label>Realista<input type="checkbox" class="check"></label>
+          <label>Cartoon<input type="checkbox" class="check"></label>
+          <label>Old School<input type="checkbox" class="check"></label>  
         </div>
       <transition name="fade">
         <div v-if="mostrar" class="estilos">
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
-          <label>Japones<input type="checkbox" class="check"></label>
+          <label>3D tattoo<input type="checkbox" class="check"></label>
+          <label>Puntillismo<input type="checkbox" class="check"></label>
+          <label>Blancos<input type="checkbox" class="check"></label>
+          <label>Minimalism<input type="checkbox" class="check"></label>
+          <label>NewSchool<input type="checkbox" class="check"></label>
+          <label>Blackwork<input type="checkbox" class="check"></label>
+          <label>Tribales<input type="checkbox" class="check"></label>
+          <label>Geometrico<input type="checkbox" class="check"></label>
         </div>
       </transition>
       <label class="more" v-if="!mostrar" id="filtro_toggle"><Icon icon="material-symbols:expand-more"/><input type="checkbox" v-model="mostrar" class="check"></label>
@@ -30,7 +30,7 @@
     </div>
     <div class="map">
       <div class="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d25650.07356993595!2d-6.2117466!3d36.5237407!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ses!4v1683526776866!5m2!1ses-419!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <Map />
       </div>
     </div>
     <!-- Carrusel -->
@@ -40,12 +40,13 @@
     </div>
     <h2>Nuevos tatuadores!</h2>
     <div class="carousel">
-      <Carousel :tattooers="this.cards"/>
+      <Carousel :tattooers="this.cards1"/>
     </div>
   </main>
 </template>
 <script> 
 
+  import Map from "../components/Map.vue"
   import Carousel from "../components/Carousel.vue";
 
   export default{
@@ -54,6 +55,7 @@
         mostrar: false,
         position: 1,
         cards: ["1","2","3","4","5","6","7","8"],
+        cards1: ["1","2","3","4","5"]
     }),
     methods: {}
 }
@@ -86,7 +88,7 @@
     background-color: #FFFFFF;
     border-radius: 10px;
     margin: 6px;
-    width: 20%;
+    width: 21%;
     height: 20px;
     text-align: center;
     font-size: 15px;
@@ -109,7 +111,7 @@
     justify-content: center;
   }
   .fade-enter-active, .fade-leave-active{
-    transition: opacity .3s;
+    transition: opacity 0s;
   }
   .fade-enter, .fade-leave-to{
     opacity: 0;
@@ -119,6 +121,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    margin-top: 3px;
   }
   .mapa{
     width: 100%;

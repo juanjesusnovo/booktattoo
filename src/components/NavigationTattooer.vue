@@ -2,7 +2,7 @@
     <nav>
         <RouterLink to="/tattooer">Detalles</RouterLink>
         <RouterLink to="/portfolio">Portfolio</RouterLink>
-        <RouterLink to="/book">Pide cita</RouterLink>
+        <button @click="">Pide cita</button>
     </nav>
 </template>
 <script>
@@ -29,5 +29,15 @@
     }
     a:link, a:visited {
         text-decoration: none;
+    }
+    button {
+        background: none;
+        border: 0;
+        color: inherit;
+        /* cursor: default; */
+        font: inherit;
+        line-height: normal;
+        overflow: visible;
+        padding: 0;
     }
 </style>

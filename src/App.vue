@@ -1,18 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { Icon } from "@iconify/vue"
-
+import	HeaderComponent from "./components/HeaderComponent.vue"
 </script>
 
 <template>
   <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/profile">About</RouterLink>
-    </nav>
-    <div class="userIcon">
-      <Icon icon="mdi:user" class="user"/>
-    </div>
+    <HeaderComponent />
   </header>
   <main>
     <RouterView />
