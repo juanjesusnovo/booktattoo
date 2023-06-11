@@ -18,7 +18,7 @@
     function displayMap(){
         const mapOptions = {
             center: { lat: 36.52107194979073, lng: -6.2783630722432555 },
-            zoom: 12
+            zoom: 11.5
         }  
         const mapDiv = document.getElementById('map')
 
