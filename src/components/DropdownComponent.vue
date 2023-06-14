@@ -7,17 +7,26 @@
             <Icon icon="mdi:user" class="user"/>
         </div>
         <input class="menuCheck" type="checkbox" id="menuDesplegable"/>
-        <ul class="menuDesplegado" v-if="!registrado">
-            <li><RouterLink  to="/profile">Perfil</RouterLink></li>
-            <li><RouterLink  to="/favourites">Favoritos</RouterLink></li>
+        <ul class="menuDesplegado" v-if="$store.state.loged">
+            <li v-if="$store.state.isUser"><RouterLink  to="/profile" @click="check">Perfil</RouterLink></li>
+            <li v-else><RouterLink  to="/tattooer" @click="check">Perfil</RouterLink></li>
+            <li><RouterLink  to="/favourites" @click="check">Favoritos</RouterLink></li>
         </ul>
         <ul class="menuDesplegado" v-else>
-            <li><RouterLink  to="/login">Iniciar Sesion</RouterLink></li>
-            <li><RouterLink  to="/register">Registrarse</RouterLink></li>
+            <li><RouterLink  to="/login" @click="check">Iniciar Sesion</RouterLink></li>
+            <li><RouterLink  to="/register" @click="check">Registrarse</RouterLink></li>
         </ul>
     </label>
 </template>
-
+<script>
+    export default{
+        methods: {
+            check(){
+                document.querySelector("#menuDesplegable").checked = false
+            }
+        }
+    }
+</script>
 <style scoped>
     .menuCheck[type=checkbox]{
         display: none

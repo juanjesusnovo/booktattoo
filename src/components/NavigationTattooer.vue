@@ -2,12 +2,16 @@
     <nav>
         <RouterLink to="/tattooer">Detalles</RouterLink>
         <RouterLink to="/portfolio">Portfolio</RouterLink>
-        <button @click="">Pide cita</button>
+        <button @click="book">Pide cita</button>
     </nav>
 </template>
 <script>
     export default{
-
+        methods:{
+            book(){
+                alert("Has solicitado una cita")
+            }
+        }
     }
 </script>
 <style scoped>

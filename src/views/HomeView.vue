@@ -84,7 +84,7 @@
   .check[type="checkbox"]{
     display: none;
   }
-  label{
+  .estilos label{
     background-color: #FFFFFF;
     border-radius: 10px;
     margin: 6px;

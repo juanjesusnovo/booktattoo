@@ -5,9 +5,9 @@
             <p>Mi nombre</p>
         </section>
         <section>
-            <NavigationUser />
+            <NavigationUser v-if="!$store.state.istattooer"/>
         </section>
-        <section class="info_user">
+        <section class="info_user" v-if="!$store.state.istattooer">
             <div class="info">
                 <p>Nombre</p>
                 <p>xxxxxxxxxxxxx</p>
@@ -33,6 +33,7 @@
 </template>
 <script setup>
     import NavigationUser from '../components/NavigationUser.vue';
+    import NavigationTattooer from '../components/NavigationTattooer.vue';
 </script>
 <style scoped>
     .all{

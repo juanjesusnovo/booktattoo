@@ -9,7 +9,7 @@ import	HeaderComponent from "./components/HeaderComponent.vue"
     <HeaderComponent />
   </header>
   <main>
-    <RouterView />
+    <router-view :key="$route.fullPath" />
   </main>
   <footer>
     <nav class="socialmedia">

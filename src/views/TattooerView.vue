@@ -2,9 +2,13 @@
     import { Icon } from "@iconify/vue"
 </script>
 <template>
-    <section>
+    <section class="head">
         <div class="img_tattooer"></div>
         <h2>Tatuador</h2>
+        <div v-if="$store.state.loged" class="like">
+            <button v-if="$store.state.favourites.includes(1)" @click="fav()"><Icon icon="il:heart" /></button>
+            <button v-else @click="fav()"><Icon icon="mdi:heart-outline" /></button>
+        </div>
     </section>
     <section>
         <NavigationTattooer />
@@ -61,6 +65,20 @@ export default{
 }
 </script>
 <style scoped>
+    .head{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .head button{
+        background: none;
+        border: 0;
+        color: inherit;
+        line-height: normal;
+        padding: 0;
+        width: 100%;
+    }
     .img_tattooer{
         width: 393px;
         height: 158px;
@@ -68,6 +86,10 @@ export default{
     }
     h2{
         padding: 10px;
+        width: 80%;
+    }
+    .like{
+        width: 10%;
     }
     .info{
         padding: 10px;

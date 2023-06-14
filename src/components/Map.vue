@@ -11,7 +11,6 @@
     const loader = new Loader(apiOptions)
 
     loader.load().then(()=>{
-        console.log("Maps")
         const map = displayMap()
     })
 
