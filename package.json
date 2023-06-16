@@ -4,6 +4,7 @@
   "private": true,
   "preinstall": "npx npm-force-resolutions",
   "scripts": {
+    "start": "node ./src/main.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
