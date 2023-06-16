@@ -1,18 +1,23 @@
 <template>
     <nav>
         <button @click="goDetalles">Detalles</button>
-        <button @click="goPortfolio">Portfolio</button>
         <button @click="book" v-if="this.$store.state.loged">Pide cita</button>
     </nav>
 </template>
 <script>
+    import axios from 'axios'
+
     export default{
         props: {
             id: Number
         },
         methods:{
-            book(){
+            async book(){
                 alert("Has solicitado una cita")
+                await axios.post("https://apispringboot-production-5a7a.up.railway.app/book",{
+                    user: this.$store.state.currentId,
+                    tattooer: this.id
+                }).then(res=> console.log(res))
             },
             goDetalles(){
                 this.$router.push(`/tattooer/${this.id}`)

@@ -16,6 +16,7 @@
                     id="name"
                     required
                     placeholder="Nombre"
+                    v-model="name"
                 />
             </div>
             <div>
@@ -25,6 +26,7 @@
                     id="surname"
                     required
                     placeholder="Apellido"
+                    v-model="surname"
                 />
             </div>
             <div>
@@ -32,6 +34,7 @@
                 <input
                     type="text"
                     id="username"
+                    v-model="username"
                     required
                     placeholder="Username"
                 />
@@ -43,6 +46,7 @@
                     id="email"
                     required
                     placeholder="Email"
+                    v-model="emailUser"
                 />
                 <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
             </div>
@@ -52,6 +56,7 @@
                     type="password"
                     id="password"
                     placeholder="Password"
+                    v-model="passwordUser"
                     required
                 />
                 <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
@@ -65,15 +70,16 @@
                     required
                 />
             </div>
-            <input class="submit" type="submit" value="Register" @click="checkForm"/>
+            <input class="submit" type="submit" value="Register" @click="checkForm(false)"/>
             <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
         </form>
-        <form action class="user" id="tattooer">
+        <form class="user" id="tattooer">
             <div>
                 <label for="#email">Nombre:</label>
                 <input
                     type="text"
                     id="name"
+                    v-model="name"
                     required
                     placeholder="Nombre"
                 />
@@ -83,6 +89,7 @@
                 <input
                     type="email"
                     id="email"
+                    v-model="email"
                     required
                     placeholder="Email"
                 />
@@ -93,6 +100,7 @@
                 <input
                     type="password"
                     id="password"
+                    v-model="password"
                     placeholder="Password"
                     required
                 />
@@ -112,6 +120,7 @@
                 <input
                     type="text"
                     id="info"
+                    v-model="info"
                     required
                     placeholder="Información"
                 />
@@ -121,6 +130,7 @@
                 <input
                     type="text"
                     id="tfno"
+                    v-model="tfno"
                     required
                     placeholder="Teléfono"
                 />
@@ -130,6 +140,7 @@
                 <input
                     type="text"
                     id="twitter"
+                    v-model="twitter"
                     required
                     placeholder="Twitter"
                 />
@@ -139,6 +150,7 @@
                 <input
                     type="text"
                     id="instagram"
+                    v-model="instagram"
                     required
                     placeholder="Instagram"
                 />
@@ -148,6 +160,7 @@
                 <input
                     type="text"
                     id="facebook"
+                    v-model="facebook"
                     required
                     placeholder="Facebook"
                 />
@@ -156,60 +169,60 @@
                 <label for="#email">Imagen de perfil:</label>
                 <input
                     type="file"
-                    id="picture"
+                    id="pictureTattooer"
                 />
             </div>
             <div class="estilos">
                 <div>
                     <label for="#styles">Japones</label>
-                    <input type="checkbox" name="japones" id="japones" />
+                    <input type="checkbox" name="japones" id="japones" v-model="Japones"/>
                 </div> 
                 <div>
                     <label for="#styles">Realista</label>
-                    <input type="checkbox" name="realista" id="realista" />
+                    <input type="checkbox" name="realista" id="realista" v-model="Realista"/>
                 </div>
                 <div>
                     <label for="#styles">Cartoon</label>
-                    <input type="checkbox" name="cartoon" id="cartoon" />
+                    <input type="checkbox" name="cartoon" id="cartoon" v-model="Cartoon"/>
                 </div>
                 <div>
                     <label for="#styles">OldSchool</label>
-                    <input type="checkbox" name="oldschool" id="oldschool" />
+                    <input type="checkbox" name="oldschool" id="oldschool" v-model="OldSchool"/>
                 </div>
                 <div>
                     <label for="#styles">3D tattoo</label>
-                    <input type="checkbox" name="3dtattoo" id="3dtattoo" />
+                    <input type="checkbox" name="3dtattoo" id="3dtattoo" v-model="dtattoo"/>
                 </div>
                 <div>
                     <label for="#styles">Puntillismo</label>
-                    <input type="checkbox" name="puntillismo" id="puntillismo" />
+                    <input type="checkbox" name="puntillismo" id="puntillismo" v-model="Puntillismo"/>
                 </div>
                 <div>
                     <label for="#styles">Blancos</label>
-                    <input type="checkbox" name="blancos" id="blancos" />
+                    <input type="checkbox" name="blancos" id="blancos" v-model="Blancos"/>
                 </div>
                 <div>
                     <label for="#styles">Minimalismo</label>
-                <input type="checkbox" name="minimalism" id="minimalism" />
+                <input type="checkbox" name="minimalism" id="minimalism" v-model="Minimalismo"/>
                 </div>
                 <div>
                     <label for="#styles">NewSchool</label>
-                    <input type="checkbox" name="newschool" id="newschool" />
+                    <input type="checkbox" name="newschool" id="newschool" v-model="NewSchool"/>
                 </div>
                 <div>
                     <label for="#styles">Blackwork</label>
-                    <input type="checkbox" name="blackwork" id="blackwork" />
+                    <input type="checkbox" name="blackwork" id="blackwork" v-model="Blackwork"/>
                 </div>
                 <div>
                     <label for="#styles">Tribales</label>
-                    <input type="checkbox" name="japones" id="japones" />
+                    <input type="checkbox" name="japones" id="japones" v-model="Tribales"/>
                 </div>
                 <div>
                     <label for="#styles">Geometrico</label>
-                    <input type="checkbox" name="japones" id="japones" />
+                    <input type="checkbox" name="japones" id="japones" v-model="Geometrico"/>
                 </div>
             </div>
-            <input class="submit" type="submit" value="Register" @click="checkForm"/>
+            <input class="submit" type="submit" value="Register" @click="checkForm(true)"/>
             <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
         </form>
     </div>
@@ -221,11 +234,15 @@
         data(){
             return({
                 name: "",
+                nameUser: "",
                 surname: "",
                 username: "",
                 email: "",
+                emailUser: "",
                 password: "",
+                passwordUser: "",
                 picture: "",
+                pictureUser: "",
                 info: "",
                 styles: "",
                 tfno: "",
@@ -236,6 +253,7 @@
                 validEmail: true,
                 Japones: false,
                 Realista: false,
+                Cartoon: false,
                 OldSchool: false,
                 dtattoo: false,
                 Puntillismo: false,
@@ -261,7 +279,7 @@
                 document.getElementById('user').style.display = "none"
                 document.getElementById('tattooer').style.display = "none"
             },
-            checkForm(){
+            checkForm(tattooer){
                 const passwordGood = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
                 const emailGood = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
 
@@ -269,10 +287,15 @@
                 this.validEmail = emailGood.test(this.email)
 
                 if(this.validPass && this.validEmail){
-                    this.submit()
+                    if(tattooer){
+                        this.saveTattooer()
+                    }
+                    else{
+                        this.saveUser()
+                    }
                 }
             },
-            save(){
+            saveTattooer(){
                 if(this.Japones === true){
                     this.estilos += "Japones, "
                 }
@@ -309,13 +332,41 @@
                 this.estilos.slice(0,-2)
             },
             async submit(){
-                await axios.post("https://apispringboot-production-5a7a.up.railway.app/tattooers/create",{
+                await axios.postForm("https://apispringboot-production-5a7a.up.railway.app/tattooers/create",{
                     name: this.name,
                     email: this.email,
                     password: this.password,
                     info: this.info,
-                    
-                })
+                    styles: this.estilos,
+                    tfno: this.tfno,
+                    twitter: this.twitter,
+                    instagram: this.instagram,
+                    facebook: this.facebook,
+                    picture: document.getElementById("pictureTattooer").value
+                }).then(res => this.$store.state.currentId = res.data.id)
+                this.newTattooer()
+            },
+            async newTattooer(){
+                await axios.postForm("https://apispringboot-production-5a7a.up.railway.app/users/create", {
+                    name: this.name,
+                    password: this.password,
+                    isTattooer: true,
+                    tattooerId: this.$store.state.currentId
+                }).then(res => console.log(res))
+                this.$store.state.currentId = null
+                this.$router.push("/login")
+            },
+            async saveUser(){
+                await axios.postForm("https://apispringboot-production-5a7a.up.railway.app/users/create",{
+                    name: this.nameUser,
+                    surname: this.surname,
+                    username: this.username,
+                    email: this.emailUser,
+                    password: this.passwordUser,
+                    picture: document.getElementById("pictureUser").value,
+                    isTattooer: false
+                }).then(res => console.log(res))
+                this.$router.push("/login")
                 
             }
         }   

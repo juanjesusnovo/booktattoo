@@ -1,27 +1,49 @@
+<script setup>
+    import { Icon } from "@iconify/vue"
+    import NavigationUser from '../components/NavigationUser.vue';
+</script>
 <template>
     <div>
         <section>
             <NavigationUser v-if="$store.state.isUser"/>
         </section>
         <section class="books">
-            <div class="book">
+            <div class="book" v-for="book in books">
                 <Icon icon="material-symbols:calendar-month" class="icon"/>
-                <p>14 Febrero 18:00</p>
-            </div>
-            <div class="book">
-                <Icon icon="material-symbols:calendar-month" class="icon"/>
-                <p>14 Febrero 18:00</p>
-            </div>
-            <div class="book">
-                <Icon icon="material-symbols:calendar-month" class="icon"/>
-                <p>14 Febrero 18:00</p>
+                <p v-if="book.pending">Pendiente</p>
+                <p v-else>{{ book.date }}</p>
+                <div v-if="!this.$store.state.isUser">
+                    <input type="date" v-model="fecha">
+                    <button @click="citar">Dar cita</button>
+                </div>
             </div>
         </section>
     </div>
 </template>
-<script setup>
-    import { Icon } from "@iconify/vue"
-    import NavigationUser from '../components/NavigationUser.vue';
+<script>
+    import axios from "axios"
+    
+    export default{
+        created(){
+            if(this.$store.state.isUser == true){
+                axios.get("https://apispringboot-production-5a7a.up.railway.app/bookUser/"+this.$store.state.currentId)
+                .then(res => this.books = res.data)
+            }
+            else{
+                axios.get("https://apispringboot-production-5a7a.up.railway.app/bookTattooer/"+this.$store.state.currentId)
+                .then(res => this.books = res.data)
+            }
+        },
+        data(){
+            return{
+                books: [],
+                fecha: ""
+            }
+        },
+        methods:{
+        }
+    }
+
 </script>
 <style scoped>
     div{
