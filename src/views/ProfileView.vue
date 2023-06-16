@@ -10,30 +10,43 @@
         <section class="info_user" v-if="!$store.state.istattooer">
             <div class="info">
                 <p>Nombre</p>
-                <p>xxxxxxxxxxxxx</p>
+                <p>{{ this.$store.state.currentUser.name }}</p>
             </div>
             <div class="info">
                 <p>Apellidos</p>
-                <p>xxxxxxxxxxxxx</p>
+                <p>{{ this.$store.state.currentUser.surname }}</p>
             </div>
             <div class="info">
                 <p>Nombre de Usuario</p>
-                <p>xxxxxxxxxxxxx</p>
+                <p>{{ this.$store.state.currentUser.username }}</p>
             </div>
             <div class="info">
                 <p>Email</p>
-                <p>xxxxxxxxxxxxx</p>
+                <p>{{ this.$store.state.currentUser.email }}</p>
             </div>
             <div class="info">
                 <p>Foto de perfil</p>
-                <img src="#" alt="1" class="pfp">
+                <img :src="this.img" alt="1" class="pfp">
             </div>
         </section>
     </div>
 </template>
 <script setup>
-    import NavigationUser from '../components/NavigationUser.vue';
-    import NavigationTattooer from '../components/NavigationTattooer.vue';
+    import NavigationUser from '../components/NavigationUser.vue'
+</script>
+<script>
+    import axios from 'axios';
+    export default{
+        created(){
+            axios.get(`https://apispringboot-production-5a7a.up.railway.app/images/${this.$store.state.currentUser.picture}`)
+            .then(res => this.img = res)
+        },
+        data(){
+            return{
+                img: ""
+            }
+        }
+    }
 </script>
 <style scoped>
     .all{
