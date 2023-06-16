@@ -44,6 +44,7 @@
                     required
                     placeholder="Email"
                 />
+                <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
             </div>
             <div>
                 <label for="#password">Contraseña:</label>
@@ -51,7 +52,9 @@
                     type="password"
                     id="password"
                     placeholder="Password"
+                    required
                 />
+                <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
             </div>
             <div>
                 <label for="#password">Repite Contraseña:</label>
@@ -59,16 +62,10 @@
                     type="password"
                     id="password"
                     placeholder="Password"
+                    required
                 />
             </div>
-            <div>
-                <label for="#istattooer">Eres tatuador?</label>
-                <input
-                    type="checkbox"
-                    id="istattooer"
-                />
-            </div>
-            <input class="submit" type="submit" value="Register" />
+            <input class="submit" type="submit" value="Register" @click="checkForm"/>
             <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
         </form>
         <form action class="user" id="tattooer">
@@ -81,7 +78,7 @@
                     placeholder="Nombre"
                 />
             </div>
-            <div>
+            <div class="error1">
                 <label for="#email">Email:</label>
                 <input
                     type="email"
@@ -89,14 +86,17 @@
                     required
                     placeholder="Email"
                 />
+                <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
             </div>
-            <div>
+            <div class="error1">
                 <label for="#password">Contraseña:</label>
                 <input
                     type="password"
                     id="password"
                     placeholder="Password"
+                    required
                 />
+                <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
             </div>
             <div>
                 <label for="#password">Repite Contraseña:</label>
@@ -104,6 +104,7 @@
                     type="password"
                     id="password"
                     placeholder="Password"
+                    required
                 />
             </div>
             <div>
@@ -156,42 +157,97 @@
                 <input
                     type="file"
                     id="picture"
-                    required
                 />
             </div>
             <div class="estilos">
-                <label for="#styles">Japones</label>
-                <input type="checkbox" name="japones" id="japones" />
-                <label for="#styles">Realista</label>
-                <input type="checkbox" name="realista" id="realista" />
-                <label for="#styles">Cartoon</label>
-                <input type="checkbox" name="cartoon" id="cartoon" />
-                <label for="#styles">OldSchool</label>
-                <input type="checkbox" name="oldschool" id="oldschool" />
-                <label for="#styles">3D tattoo</label>
-                <input type="checkbox" name="3dtattoo" id="3dtattoo" />
-                <label for="#styles">Puntillismo</label>
-                <input type="checkbox" name="puntillismo" id="puntillismo" />
-                <label for="#styles">Blancos</label>
-                <input type="checkbox" name="blancos" id="blancos" />
-                <label for="#styles">Minimalismo</label>
+                <div>
+                    <label for="#styles">Japones</label>
+                    <input type="checkbox" name="japones" id="japones" />
+                </div> 
+                <div>
+                    <label for="#styles">Realista</label>
+                    <input type="checkbox" name="realista" id="realista" />
+                </div>
+                <div>
+                    <label for="#styles">Cartoon</label>
+                    <input type="checkbox" name="cartoon" id="cartoon" />
+                </div>
+                <div>
+                    <label for="#styles">OldSchool</label>
+                    <input type="checkbox" name="oldschool" id="oldschool" />
+                </div>
+                <div>
+                    <label for="#styles">3D tattoo</label>
+                    <input type="checkbox" name="3dtattoo" id="3dtattoo" />
+                </div>
+                <div>
+                    <label for="#styles">Puntillismo</label>
+                    <input type="checkbox" name="puntillismo" id="puntillismo" />
+                </div>
+                <div>
+                    <label for="#styles">Blancos</label>
+                    <input type="checkbox" name="blancos" id="blancos" />
+                </div>
+                <div>
+                    <label for="#styles">Minimalismo</label>
                 <input type="checkbox" name="minimalism" id="minimalism" />
-                <label for="#styles">NewSchool</label>
-                <input type="checkbox" name="newschool" id="newschool" />
-                <label for="#styles">Blackwork</label>
-                <input type="checkbox" name="blackwork" id="blackwork" />
-                <label for="#styles">Tribales</label>
-                <input type="checkbox" name="japones" id="japones" />
-                <label for="#styles">Geometrico</label>
-                <input type="checkbox" name="japones" id="japones" />
+                </div>
+                <div>
+                    <label for="#styles">NewSchool</label>
+                    <input type="checkbox" name="newschool" id="newschool" />
+                </div>
+                <div>
+                    <label for="#styles">Blackwork</label>
+                    <input type="checkbox" name="blackwork" id="blackwork" />
+                </div>
+                <div>
+                    <label for="#styles">Tribales</label>
+                    <input type="checkbox" name="japones" id="japones" />
+                </div>
+                <div>
+                    <label for="#styles">Geometrico</label>
+                    <input type="checkbox" name="japones" id="japones" />
+                </div>
             </div>
-            <input class="submit" type="submit" value="Register" />
+            <input class="submit" type="submit" value="Register" @click="checkForm"/>
             <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
         </form>
     </div>
 </template>
 <script>
+    import axios from 'axios'
+
     export default {
+        data(){
+            return({
+                name: "",
+                surname: "",
+                username: "",
+                email: "",
+                password: "",
+                picture: "",
+                info: "",
+                styles: "",
+                tfno: "",
+                twitter: "",
+                instagram: "",
+                facebook: "",
+                validPass: true,
+                validEmail: true,
+                Japones: false,
+                Realista: false,
+                OldSchool: false,
+                dtattoo: false,
+                Puntillismo: false,
+                Blancos: false,
+                Minimalismo: false,
+                NewSchool: false,
+                Blackwork: false,
+                Tribales: false,
+                Geometrico: false,
+                estilos: ""
+            })
+        },
         methods:{
             displayUser(){
                 document.getElementById('elegir').style.display = "none"
@@ -204,8 +260,65 @@
             allOff(){
                 document.getElementById('user').style.display = "none"
                 document.getElementById('tattooer').style.display = "none"
+            },
+            checkForm(){
+                const passwordGood = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
+                const emailGood = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
+
+                this.validPass = passwordGood.test(this.password)
+                this.validEmail = emailGood.test(this.email)
+
+                if(this.validPass && this.validEmail){
+                    this.submit()
+                }
+            },
+            save(){
+                if(this.Japones === true){
+                    this.estilos += "Japones, "
+                }
+                if(this.Realista === true){
+                    this.estilos += "Realista, "
+                }
+                if(this.OldSchool === true){
+                    this.estilos += "OldSchool, "
+                }
+                if(this.dtattoo === true){
+                    this.estilos += "3D Tattoo, "
+                }
+                if(this.Puntillismo === true){
+                    this.estilos += "Puntillismo, "
+                }
+                if(this.Blancos === true){
+                    this.estilos += "Blancos, "
+                }
+                if(this.Minimalismo === true){
+                    this.estilos += "Minimalismo, "
+                }
+                if(this.NewSchool === true){
+                    this.estilos +="NewSchool, "
+                }
+                if(this.Blackwork === true){
+                    this.estilos += "Blackwork, "
+                }
+                if(this.Tribales === true){
+                    this.estilos += "Tribales, "
+                }
+                if(this.Geometrico === true){
+                    this.estilos += "Geometrico, "
+                }
+                this.estilos.slice(0,-2)
+            },
+            async submit(){
+                await axios.post("https://apispringboot-production-5a7a.up.railway.app/tattooers/create",{
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    info: this.info,
+                    
+                })
+                
             }
-        }
+        }   
     }
 </script>
 <style>
@@ -220,6 +333,11 @@
         border-radius: 10px;
         height: 20vh;
         margin-top: 15vh;
+    }
+    .error1{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
     }
     .elegir h3{
         width: 100%;
@@ -253,13 +371,14 @@
         border-radius: 8px;
         align-items: center;
         justify-content: center;
-        min-height: 25vh;
+        min-height: 55vh;
         margin-bottom: 20px;
         opacity: 0.8;
     }
     form div{
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
         width: 100%;
         padding: 5px;
     }
@@ -305,10 +424,60 @@
         display: flex;
         flex-wrap: wrap;
     }
-    .estilos label{
-        width: 30%;
+    .estilos div{
+        width: 100%;
+        text-align: end;
     }
-    .estilos input{
-        width: 20px;
+    .error{
+        width: 100%;
+        margin-left: 30px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    @media (min-width: 600px){
+        #user{
+            min-height: 60vh;
+            width: 40%;
+        }
+        #user div label{
+            font-size: 20px;
+            width: 40%;
+            text-align: end;
+        }
+        #user div input{
+            width: 50%;
+        }
+    }
+    @media (min-width: 750px) {
+        .logobk{
+            width: 50%;
+            height: 12vh;
+        }
+    }
+    @media(min-width: 1100px){
+        form{
+            flex-direction: row;
+            flex-wrap: wrap;
+            min-height: 60vh;
+        }
+        input{
+            width: 30%;
+        }
+        label{
+            width: 10%;
+        }
+        form div{
+            width: 50%;
+        }
+        .estilos div label{
+            width: 50%;
+        }
+        .estilos div{
+            width: 20%;
+        }
+        .submit{
+            width: 20%;
+            margin-right: 50px;
+        }
     }
 </style>

@@ -1,30 +1,35 @@
 <template>
-    <section>
-        <NavigationTattooer/>
-    </section>
-    <section class="images">
-        <div class="image">
-            <div class="info">
-                <Icon icon="mdi:user" class="user"/>
+    <main>
+        <section>
+            <NavigationTattooer :id="this.$route.params.id"/>
+        </section>
+        <section class="images">
+            <div class="image">
+                <div class="info">
+                    <Icon icon="mdi:user" class="user"/>
+                </div>
             </div>
-        </div>
-        <div class="image">
-            <div class="info">
-                <Icon icon="mdi:user" class="user"/>
+            <div class="image">
+                <div class="info">
+                    <Icon icon="mdi:user" class="user"/>
+                </div>
             </div>
-        </div>
-        <div class="image">
-            <div class="info">
-                <Icon icon="mdi:user" class="user"/>
+            <div class="image">
+                <div class="info">
+                    <Icon icon="mdi:user" class="user"/>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </template>
 <script setup>
     import { Icon } from "@iconify/vue";
     import NavigationTattooer from "../components/NavigationTattooer.vue";
 </script>
 <style scoped>
+    main {
+        min-height: 86.3vh;
+    }
     section{
         margin-top: 30px;
     }
@@ -56,5 +61,27 @@
         border-radius: 20px;
         height: 22px;
         width: 22px;
+    }
+    @media(min-width: 650px){
+        .image{
+            width: 65%;
+        }
+    }
+    @media(min-width: 800px){
+        .image{
+            width: 45%;
+            margin: 15px;
+        }
+    }
+    @media(min-width: 1000px){
+        .image{
+            width: 35%;
+        }
+    }
+    @media(min-width: 1250px){
+        .image{
+            width: 30%;
+            height: 30vh;
+        }
     }
 </style>

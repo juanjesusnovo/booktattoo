@@ -5,8 +5,8 @@
 <template>
   <div class="carousel">
     <div class="inner" ref="inner" :style="innerStyles">
-      <div class="tattooer" v-for="tattooer in tattooers" :key="tattooer" @click="tattooerView">
-        {{ tattooer }}
+      <div class="tattooer" v-for="tattooer in tattooers" :key="tattooer" @click="tattooerView(tattooer)">
+        {{ tattooer.name }}
       </div>
     </div>
   </div>
@@ -83,8 +83,9 @@ export default {
         transform: `translateX(-${this.step})`
       }
     },
-    tattooerView () {
-      router.push("/tattooer")
+    tattooerView (tattooer) {
+      console.log(tattooer.id)
+      this.$router.push(`/tattooer/${tattooer.id}`)
     }
   }
 }
@@ -137,5 +138,25 @@ export default {
     align-items: center;
     position: absolute;
     left: 10px;
+  }
+  @media(min-width: 500px){
+    .tattooer{
+      width: 40%;
+      margin-right: 5px;
+    }
+  }
+  @media(min-width:900px){
+    .tattooer{
+      height: 170px;
+      width: 50%;
+    }
+    .left{
+      left: 45.5%
+    }
+  }
+  @media(min-width: 1100px){
+    .left{
+      left: 36%;
+    }
   }
 </style>

@@ -51,11 +51,6 @@
         display: flex;
         justify-content: space-around;
     }
-    nav{
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-    }
     .userIcon{
         width: 26px;
         height: 26px;
@@ -83,5 +78,34 @@
     }
     .show{
         display: block;
+    }
+    @media(min-width: 500px){
+        .logo{
+            width: 71%;
+        }
+    }
+    @media(min-width: 650px){
+        .logo{
+            width: 66%;
+        }
+        img{
+            height: 50px;
+        }
+        .userIcon{
+            width: 40px;
+            height: 40px;
+        }
+    }
+    @media(min-width: 850px){
+        .logo{
+            justify-content: flex-start;
+            margin-left: 5%;
+        }
+        img{
+            width: 260px;
+        }
+        .header{
+            height: 7vh;
+        }
     }
 </style>

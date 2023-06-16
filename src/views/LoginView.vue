@@ -3,14 +3,15 @@
         <h1 class="title">Inicia Sesion</h1>
         <img class="logobk" src="../assets/logoblanco.png" alt="logo booktattoo">
         <video src="../assets/videotattoo1.mp4" autoplay="true" muted="true" loop="true"></video>
-        <form action>
+        <form>
             <div>
-                <label for="#email">Email:</label>
+                <label for="#user">User:</label>
                 <input
-                    type="email"
-                    id="email"
+                    type="user"
+                    id="user"
                     required
-                    placeholder="Email"
+                    placeholder="user"
+                    v-model="this.user"
                 />
             </div>
             <div>
@@ -19,14 +20,45 @@
                     type="password"
                     id="password"
                     placeholder="Password"
+                    v-model="this.password"
                 />
             </div>
-            <input class="submit" type="submit" value="Login" />
-            <RouterLink to="/register">No tienes cuenta? Registrate aquí!</RouterLink>
+            <div class="buttons">
+                <RouterLink to="/register">No tienes cuenta? Registrate aquí!</RouterLink>
+            </div>
         </form>
+        <button @click="login">enviar</button>
     </div>
 </template>
 <script>
+    import axios from 'axios'
+
+    export default{
+        data: () => {
+            return{
+                user: "",
+                password: ""
+            }
+        },
+        methods:{    
+            async login(){
+                console.log(this.name, this.password);
+                await axios.post("https://apispringboot-production-5a7a.up.railway.app/token",{},{
+                    auth: {
+                        username: this.user,
+                        password: this.password
+                    }
+                }).then(response => {
+                    if(response.data != undefined){
+                        localStorage.setItem("token",response.data)
+                        this.$store.state.loged = true
+                        this.$store.state.currentUser = this.user
+                        this.$router.push("/")
+                    }
+                })
+            }
+        }
+    }
 
 </script>
 <style>
@@ -98,5 +130,40 @@
         z-index: -1000;
         overflow: hidden;
         margin: 0 auto;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    @media(min-width: 600px){
+        form{
+            height: 40vh;
+        }
+        div label{
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+        input{
+            width: 60%;
+            height: 3vh;
+        }
+        .buttons{
+            flex-direction: row;
+        }
+        .buttons input{
+            width: 30%;
+            margin-right: 30px;
+        }
+        .logobk{
+            width: 60%;
+            height: 10vh;
+        }
+    }
+    @media(min-width: 800px){
+        .buttons a{
+            font-size: 20px;
+        }
     }
 </style>

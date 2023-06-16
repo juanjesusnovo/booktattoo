@@ -2,69 +2,96 @@
     import { Icon } from "@iconify/vue"
 </script>
 <template>
-    <section class="head">
-        <div class="img_tattooer"></div>
-        <h2>Tatuador</h2>
-        <div v-if="$store.state.loged" class="like">
-            <button v-if="$store.state.favourites.includes(1)" @click="fav()"><Icon icon="il:heart" /></button>
-            <button v-else @click="fav()"><Icon icon="mdi:heart-outline" /></button>
-        </div>
-    </section>
-    <section>
-        <NavigationTattooer />
-    </section>
-    <section class="info">
-        <h3>Quienes somos</h3>
-        <p>Texto informativo sobre el tatuador ............................................................................................................................ ..................................................................</p>
-        <h3>Nuestros estilos favoritos</h3>
-        <p>Texto informativo sobre el tatuador ............................................................................................................................. .................................................................</p>
-    </section>
-    <section class="tattooers">
-        <h3>Tatuadores</h3>
-        <div class="a_tattooers">
-            <div v-for="(tattooer, i) in tattooers" :key="i" class="tattooers_profile">
-            <div class="tattooer_profile">
-                <div class="tattooer_icon">
-                    <Icon icon="mdi:user" class="t_icon"></Icon>
+<main>
+    <div class="enlaces">
+        <section class="head">
+            <div class="img_tattooer">
+                <img :src="this.imagen" alt="">
+            </div>
+            <h2>{{ this.tattooer.name }}</h2>
+        </section>
+        <section class="nav">
+            <NavigationTattooer :id="this.$route.params.id"/>
+        </section>
+    </div>
+    <div class="informacion">
+        <section class="info">
+            <h3>Quienes somos</h3>
+            <p>{{ this.tattooer.info }}</p>
+            <h3>Nuestros estilos favoritos</h3>
+            <p>{{ this.tattooer.styles }}</p>
+        </section>
+    <!--     <section class="tattooers">
+            <h3>Tatuadores</h3>
+            <div class="a_tattooers">
+                <div v-for="(tattooer, i) in tattooers" :key="i" class="tattooers_profile">
+                <div class="tattooer_profile">
+                    <div class="tattooer_icon">
+                        <Icon icon="mdi:user" class="t_icon"></Icon>
+                    </div>
+                    {{ tattooer }}
                 </div>
-                {{ tattooer }}
             </div>
-        </div>
-        </div>
-    </section>
-    <section class="contact">
-        <h3>Contacto e Información</h3>
-        <div class="tfno">
-            <p>678678687</p>
-            <Icon icon="mdi:telephone" class="telephone"/>
-        </div>
-        <p class="redes">Nuestras redes</p>
-        <div class="social">
-            <div>
-                <Icon icon="mdi:twitter" class="social_icon"/> <p class="social_user">@twitter</p>
             </div>
-            <div>
-                <Icon icon="ph:instagram-logo-fill" class="social_icon"/> <p class="social_user">@instagram</p>
+        </section> -->
+        
+        <section class="contact">
+            <h3>Contacto e Información</h3>
+            <div class="tfno">
+                <p>{{ this.tattooer.tfno }}</p>
+                <Icon icon="mdi:telephone" class="telephone"/>
             </div>
-            <div>
-                <Icon icon="ic:baseline-facebook" class="social_icon"/> <p class="social_user">@facebook</p>
+            <p class="redes">Nuestras redes</p>
+            <div class="social">
+                <div>
+                    <Icon icon="mdi:twitter" class="social_icon"/> <p class="social_user">{{ this.tattooer.twitter }}</p>
+                </div>
+                <div>
+                    <Icon icon="ph:instagram-logo-fill" class="social_icon"/> <p class="social_user">{{ this.tattooer.instagram }}</p>
+                </div>
+                <div>
+                    <Icon icon="ic:baseline-facebook" class="social_icon"/> <p class="social_user">{{ this.tattooer.facebook }}</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+</main>
 </template>
 <script>
 import NavigationTattooer from "../components/NavigationTattooer.vue";
+import axios from "axios";
 
 export default{
-    data() {
-        return {
-            tattooers: ["Jose", "Manuel", "Pedro"]
-        };
+    name: "tattooer",
+    created(){
+        this.getTattooer()
+        axios.get(`https://apispringboot-production-5a7a.up.railway.app/images/${this.tattooer.picture}`)
+        .then(response => this.imagen = response.data)
     },
-    components: { NavigationTattooer }
+    data(){
+        return{
+            tattooer: {},
+            imagen: ""
+        }
+    },
+    props: {
+        tattooer_id: String
+    },
+    components: { NavigationTattooer },
+    methods: {
+        getTattooer(){
+            // console.log(parseInt(this.$route.params.id))
+            //console.log(this.$store.state.tattooers.find(t => t.id === parseInt(this.$route.params.id)));
+            this.tattooer = this.$store.state.tattooers.find(t => t.id === parseInt(this.$route.params.id))
+            console.log(this.tattooer);
+        }
+    }
 }
 </script>
 <style scoped>
+    main{
+        min-height: 89vh;
+    }
     .head{
         width: 100%;
         display: flex;
@@ -80,9 +107,14 @@ export default{
         width: 100%;
     }
     .img_tattooer{
-        width: 393px;
-        height: 158px;
+        width: 100%;
+        height: 18vh;
         background-color: #D9D9D9;
+        margin-bottom: 10px;
+    }
+    .img_tattooer img{
+        width: 100%;
+        height: 20vh;
     }
     h2{
         padding: 10px;
@@ -191,5 +223,78 @@ export default{
     .social_user{
         font-size: 18px;
         width: 50%;
+    }
+    @media (min-width: 450px){
+        .img_tattooer{
+            height: 20vh;
+        }
+    }
+    @media (min-width: 600px) {
+        .img_tattooer{
+            height: 23vh;
+        }
+        .info h3{
+            margin-bottom: 10px;
+            font-size: 27px;
+        }
+        h2{
+            width: 100%;
+            font-size: 30px;
+        }
+        .redes{
+            font-size: 20px;
+        }
+    }
+    @media(min-width: 800px){
+        .head{
+            width: 80%;
+            padding: 20px;
+        }
+        .img_tattooer{
+            height: 20vh;
+        }
+        .nav{
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 5vh;
+        }
+        .nav nav{
+            height: 20vh;
+        }
+        .contact{
+            width: 100%;
+        }
+        .enlaces{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .informacion{
+            width: 100%;
+        }
+    }
+    @media(min-width: 1000px){
+        .informacion{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around
+        }
+        .info{
+            width: 50%;
+            border: 1px solid #D9D9D9;
+            padding: 10px;
+            height: 40vh;
+        }
+        .contact{
+            width: 40%;
+            border: 1px solid #D9D9D9;
+            padding: 10px;
+            height: 40vh;
+        }
     }
 </style>

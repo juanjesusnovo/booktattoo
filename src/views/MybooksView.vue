@@ -1,11 +1,21 @@
 <template>
     <div>
         <section>
-            <NavigationUser />
+            <NavigationUser v-if="$store.state.isUser"/>
         </section>
-        <section class="book">
-            <Icon icon="material-symbols:calendar-month" class="icon"/>
-            <p>14 Febrero 18:00</p>
+        <section class="books">
+            <div class="book">
+                <Icon icon="material-symbols:calendar-month" class="icon"/>
+                <p>14 Febrero 18:00</p>
+            </div>
+            <div class="book">
+                <Icon icon="material-symbols:calendar-month" class="icon"/>
+                <p>14 Febrero 18:00</p>
+            </div>
+            <div class="book">
+                <Icon icon="material-symbols:calendar-month" class="icon"/>
+                <p>14 Febrero 18:00</p>
+            </div>
         </section>
     </div>
 </template>
@@ -19,6 +29,12 @@
     }
     section{
         margin-top: 20px;
+        width: 100%;
+    }
+    .books{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
     .book{
         margin-top: 60px;
@@ -35,5 +51,10 @@
     }
     p{
         font-size: 25px;
+    }
+    @media(min-width: 800px){
+        .book{
+            width: 45%;
+        }
     }
 </style>

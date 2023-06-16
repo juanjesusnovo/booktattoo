@@ -83,5 +83,6 @@ import	HeaderComponent from "./components/HeaderComponent.vue"
   }
   main{
     width: 100%;
+    min-height: 88.5vh;
   }
 </style>

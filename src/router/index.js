@@ -10,9 +10,10 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/tattooer',
+      path: '/tattooer/:id',
       name: 'tattooer',
-      component: () => import('../views/TattooerView.vue')
+      component: () => import('../views/TattooerView.vue'),
+      props: true
     },
     {
       path: '/profile',
@@ -20,7 +21,7 @@ const router = createRouter({
       component: () => import('../views/ProfileView.vue')
     },
     {
-      path: '/portfolio',
+      path: '/portfolio/:id',
       name: 'portfolio',
       component: () => import('../views/PortfolioView.vue')
     },
@@ -35,11 +36,6 @@ const router = createRouter({
       component: () => import('../views/FavouritesView.vue')
     },
     {
-      path: '/book',
-      name: 'book',
-      component: () => import('../views/BookView.vue')
-    },
-    {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue')
@@ -48,7 +44,12 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: () => import('../views/RegisterView.vue')
-    }
+    },
+    {
+      path: '/tattooerprofile',
+      name: 'tattooerprofile',
+      component: () => import('../views/TattooerProfileView.vue')
+    },
   ]
 })
 

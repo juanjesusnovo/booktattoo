@@ -5,24 +5,24 @@ export default createStore({
     state: {
         loged: false,
         currentUser: null,
-        isTattooer: false,
         currentId: null,
         isUser: true,
-        favourites: []
+        tattooers: [],
+        user: []
     },
     plugins: [createPersistedState()],
     mutations: {
         setUser(state, user){
             state.currentUser = user
         },
+        setTattooers(state,tattooer){
+            state.tattooers = tattooer
+        },
         setId(state,id){
             state.currentId = id
         },
         setLoged(state, isLoged){
             state.loged = isLoged 
-        },
-        setTattoer(state, tattooer){
-            state.isTattooer = tattooer
         },
         setId(state, id){
             state.currentId = id

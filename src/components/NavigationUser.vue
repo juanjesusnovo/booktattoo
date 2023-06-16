@@ -1,7 +1,6 @@
 <template>
     <nav>
         <RouterLink to="/profile">Perfil</RouterLink>
-        <RouterLink to="/favourites">Favoritos</RouterLink>
         <RouterLink to="/mybooks">Citas</RouterLink>
     </nav>
 </template>
