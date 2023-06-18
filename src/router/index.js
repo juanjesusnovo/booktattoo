@@ -1,9 +1,9 @@
+import store from '../store/store'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const routes = [
+
     {
       path: '/',
       name: 'home',
@@ -44,8 +44,22 @@ const router = createRouter({
       path: '/tattooerprofile',
       name: 'tattooerprofile',
       component: () => import('../views/TattooerProfileView.vue')
-    },
+    }
   ]
+
+  const router = createRouter({
+    history: createWebHistory(process.env.BASE_URL),
+    routes,
+  })
+
+  router.beforeEach((to, from, next) => {
+    const isLoged = store.state.isLoged
+    const requiresLoged = to.matched.some((record) => record.meta.requiresLoged)
+    if(requiresLoged && !isLoged) {
+      next("/Login")
+    }
+    else{ next() }
+  
 })
 
 export default router
