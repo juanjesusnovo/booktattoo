@@ -14,7 +14,7 @@
                 <p v-else>{{ book.date }}</p>
                 <div v-if="!this.$store.state.isUser">
                     <input type="date" v-model="fecha">
-                    <button @click="citar">Dar cita</button>
+                    <button @click="citar(book.user)">Dar cita</button>
                 </div>
             </div>
         </section>
@@ -41,6 +41,19 @@
             }
         },
         methods:{
+            async citar(id){
+                await axios.get("https://apispringboot-production-5a7a.up.railway.app/users/"+id, `Bearer ${localStorage.getItem("token")}`)
+                .then(res=> {
+                    this.darCita(res.data)
+                })
+            },
+            async darCita(user){
+                await axios.post("https://apispringboot-production-5a7a.up.railway.app/createBook/",{
+                    user: user,
+                    tattooer: this.$store.state.currentUser,
+                    date: this.fecha
+                }, `Bearer ${localStorage.getItem("token")}`)
+            }
         }
     }
 

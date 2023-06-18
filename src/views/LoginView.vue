@@ -51,10 +51,32 @@
                 }).then(response => {
                     if(response.data != undefined){
                         localStorage.setItem("token",response.data)
+                        this.getUser()
+                    }
+                })
+            },
+            async getUser(){
+                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/users/${this.user}`, `Bearer ${localStorage.getItem("token")}`)
+                .then(res => {
+                    if(res.data.isTattooer == true){
+                        this.getTattooer(res.data.tattooerId)
+                    }
+                    else{
                         this.$store.state.loged = true
-                        this.$store.state.currentUser = this.user
+                        this.$store.state.currentUser = res.data
+                        this.$store.state.currentId = res.data.id
                         this.$router.push("/")
                     }
+                })
+                
+            },
+            async getTattooer(id){
+                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/tattooers/${id}`)
+                .then(res => {
+                    this.$store.state.currentUser = res.data
+                    this.$store.state.loged = true
+                    this.$store.state.currentId = res.data.id
+                    this.$router.push("/")
                 })
             }
         }
