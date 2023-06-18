@@ -3,11 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
-
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/tattooer/:id',
@@ -48,12 +47,12 @@ const routes = [
   ]
 
   const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
   })
 
   router.beforeEach((to, from, next) => {
-    const isLoged = store.state.isLoged
+    const isLoged = store.state.loged
     const requiresLoged = to.matched.some((record) => record.meta.requiresLoged)
     if(requiresLoged && !isLoged) {
       next("/Login")
