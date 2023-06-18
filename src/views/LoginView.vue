@@ -9,7 +9,6 @@
                 <input
                     type="user"
                     id="user"
-                    required
                     placeholder="user"
                     v-model="this.user"
                 />
@@ -42,7 +41,7 @@
         },
         methods:{    
             async login(){
-                console.log(this.name, this.password);
+                console.log(this.user, this.password);
                 await axios.post("https://apispringboot-production-5a7a.up.railway.app/token",{},{
                     auth: {
                         username: this.user,
@@ -51,12 +50,12 @@
                 }).then(response => {
                     if(response.data != undefined){
                         localStorage.setItem("token",response.data)
-                        this.getUser()
+                        this.getUser(response.data)
                     }
                 })
             },
-            async getUser(){
-                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/users/${this.user}`, `Bearer ${localStorage.getItem("token")}`)
+            async getUser(token){
+                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/users/${this.user}`, { headers:{ "Authorization" : `Bearer ${token}` }})
                 .then(res => {
                     if(res.data.isTattooer == true){
                         this.getTattooer(res.data.tattooerId)
