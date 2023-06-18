@@ -55,7 +55,7 @@
                 })
             },
             async getUser(token){
-                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/users/${this.user}`, { headers:{ "Authorization" : `Bearer ${token}` }})
+                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/users/${this.user}`, { headers:{ Authorization : `Bearer ${token}` }})
                 .then(res => {
                     if(res.data.isTattooer == true){
                         this.getTattooer(res.data.tattooerId)
