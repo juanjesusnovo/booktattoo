@@ -8,223 +8,227 @@
             <button @click="displayUser">Usuario</button>
             <button @click="displayTattooer">Empresa</button>
         </div>
-        <form action class="user" id="user">
-            <div>
-                <label for="#email">Nombre:</label>
-                <input
-                    type="text"
-                    id="name"
-                    required
-                    placeholder="Nombre"
-                    v-model="name"
-                />
-            </div>
-            <div>
-                <label for="#email">Apellido:</label>
-                <input
-                    type="text"
-                    id="surname"
-                    required
-                    placeholder="Apellido"
-                    v-model="surname"
-                />
-            </div>
-            <div>
-                <label for="#email">Username:</label>
-                <input
-                    type="text"
-                    id="username"
-                    v-model="username"
-                    required
-                    placeholder="Username"
-                />
-            </div>
-            <div>
-                <label for="#email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    required
-                    placeholder="Email"
-                    v-model="emailUser"
-                />
-                <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
-            </div>
-            <div>
-                <label for="#password">Contraseña:</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    v-model="passwordUser"
-                    required
-                />
-                <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
-            </div>
-            <div>
-                <label for="#password">Repite Contraseña:</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    required
-                />
-            </div>
-            <input class="submit" type="submit" value="Register" @click="checkForm(false)"/>
-            <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
-        </form>
-        <form class="user" id="tattooer">
-            <div>
-                <label for="#email">Nombre:</label>
-                <input
-                    type="text"
-                    id="name"
-                    v-model="name"
-                    required
-                    placeholder="Nombre"
-                />
-            </div>
-            <div class="error1">
-                <label for="#email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    v-model="email"
-                    required
-                    placeholder="Email"
-                />
-                <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
-            </div>
-            <div class="error1">
-                <label for="#password">Contraseña:</label>
-                <input
-                    type="password"
-                    id="password"
-                    v-model="password"
-                    placeholder="Password"
-                    required
-                />
-                <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
-            </div>
-            <div>
-                <label for="#password">Repite Contraseña:</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    required
-                />
-            </div>
-            <div>
-                <label for="#email">Información:</label>
-                <input
-                    type="text"
-                    id="info"
-                    v-model="info"
-                    required
-                    placeholder="Información"
-                />
-            </div>
-            <div>
-                <label for="#email">Teléfono:</label>
-                <input
-                    type="text"
-                    id="tfno"
-                    v-model="tfno"
-                    required
-                    placeholder="Teléfono"
-                />
-            </div>
-            <div>
-                <label for="#email">Twitter:</label>
-                <input
-                    type="text"
-                    id="twitter"
-                    v-model="twitter"
-                    required
-                    placeholder="Twitter"
-                />
-            </div>
-            <div>
-                <label for="#email">Instagram:</label>
-                <input
-                    type="text"
-                    id="instagram"
-                    v-model="instagram"
-                    required
-                    placeholder="Instagram"
-                />
-            </div>
-            <div>
-                <label for="#email">Facebook:</label>
-                <input
-                    type="text"
-                    id="facebook"
-                    v-model="facebook"
-                    required
-                    placeholder="Facebook"
-                />
-            </div>
-            <div>
-                <label for="#email">Imagen de perfil:</label>
-                <input
-                    type="file"
-                    id="pictureTattooer"
-                />
-            </div>
-            <div class="estilos">
+        <div class="user" id="user">
+            <form action id="user">
                 <div>
-                    <label for="#styles">Japones</label>
-                    <input type="checkbox" name="japones" id="japones" v-model="Japones"/>
-                </div> 
-                <div>
-                    <label for="#styles">Realista</label>
-                    <input type="checkbox" name="realista" id="realista" v-model="Realista"/>
+                    <label for="#email">Nombre:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        required
+                        placeholder="Nombre"
+                        v-model="name"
+                    />
                 </div>
                 <div>
-                    <label for="#styles">Cartoon</label>
-                    <input type="checkbox" name="cartoon" id="cartoon" v-model="Cartoon"/>
+                    <label for="#email">Apellido:</label>
+                    <input
+                        type="text"
+                        id="surname"
+                        required
+                        placeholder="Apellido"
+                        v-model="surname"
+                    />
                 </div>
                 <div>
-                    <label for="#styles">OldSchool</label>
-                    <input type="checkbox" name="oldschool" id="oldschool" v-model="OldSchool"/>
+                    <label for="#email">Username:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        v-model="username"
+                        required
+                        placeholder="Username"
+                    />
                 </div>
                 <div>
-                    <label for="#styles">3D tattoo</label>
-                    <input type="checkbox" name="3dtattoo" id="3dtattoo" v-model="dtattoo"/>
+                    <label for="#email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        required
+                        placeholder="Email"
+                        v-model="emailUser"
+                    />
+                    <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
                 </div>
                 <div>
-                    <label for="#styles">Puntillismo</label>
-                    <input type="checkbox" name="puntillismo" id="puntillismo" v-model="Puntillismo"/>
+                    <label for="#password">Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        v-model="passwordUser"
+                        required
+                    />
+                    <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
                 </div>
                 <div>
-                    <label for="#styles">Blancos</label>
-                    <input type="checkbox" name="blancos" id="blancos" v-model="Blancos"/>
+                    <label for="#password">Repite Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        required
+                    />
+                </div>
+                <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
+            </form>
+            <button @click="checkForm(false)">Registrarse</button>
+        </div>
+        <div class="user" id="tattooer">
+            <form id="tattooer">
+                <div>
+                    <label for="#email">Nombre:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        v-model="name"
+                        required
+                        placeholder="Nombre"
+                    />
+                </div>
+                <div class="error1">
+                    <label for="#email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        v-model="email"
+                        required
+                        placeholder="Email"
+                    />
+                    <p v-if="!validEmail" class="error">El correo debe ser un correo válido</p>
+                </div>
+                <div class="error1">
+                    <label for="#password">Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        v-model="password"
+                        placeholder="Password"
+                        required
+                    />
+                    <p v-if="!validPass" class="error">La contraseña debe ser de 8 a 24 caracteres y debe incluir mayúsculas y minúsculas, un número y un caracter especial, (caracteres especiales permitidos [!,@,#,$,%])</p>
                 </div>
                 <div>
-                    <label for="#styles">Minimalismo</label>
-                <input type="checkbox" name="minimalism" id="minimalism" v-model="Minimalismo"/>
+                    <label for="#password">Repite Contraseña:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        required
+                    />
                 </div>
                 <div>
-                    <label for="#styles">NewSchool</label>
-                    <input type="checkbox" name="newschool" id="newschool" v-model="NewSchool"/>
+                    <label for="#email">Información:</label>
+                    <input
+                        type="text"
+                        id="info"
+                        v-model="info"
+                        required
+                        placeholder="Información"
+                    />
                 </div>
                 <div>
-                    <label for="#styles">Blackwork</label>
-                    <input type="checkbox" name="blackwork" id="blackwork" v-model="Blackwork"/>
+                    <label for="#email">Teléfono:</label>
+                    <input
+                        type="text"
+                        id="tfno"
+                        v-model="tfno"
+                        required
+                        placeholder="Teléfono"
+                    />
                 </div>
                 <div>
-                    <label for="#styles">Tribales</label>
-                    <input type="checkbox" name="japones" id="japones" v-model="Tribales"/>
+                    <label for="#email">Twitter:</label>
+                    <input
+                        type="text"
+                        id="twitter"
+                        v-model="twitter"
+                        required
+                        placeholder="Twitter"
+                    />
                 </div>
                 <div>
-                    <label for="#styles">Geometrico</label>
-                    <input type="checkbox" name="japones" id="japones" v-model="Geometrico"/>
+                    <label for="#email">Instagram:</label>
+                    <input
+                        type="text"
+                        id="instagram"
+                        v-model="instagram"
+                        required
+                        placeholder="Instagram"
+                    />
                 </div>
-            </div>
-            <input class="submit" type="submit" value="Register" @click="checkForm(true)"/>
-            <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
-        </form>
+                <div>
+                    <label for="#email">Facebook:</label>
+                    <input
+                        type="text"
+                        id="facebook"
+                        v-model="facebook"
+                        required
+                        placeholder="Facebook"
+                    />
+                </div>
+                <div>
+                    <label for="#email">Imagen de perfil:</label>
+                    <input
+                        type="file"
+                        id="pictureTattooer"
+                    />
+                </div>
+                <div class="estilos">
+                    <div>
+                        <label for="#styles">Japones</label>
+                        <input type="checkbox" name="japones" id="japones" v-model="Japones"/>
+                    </div> 
+                    <div>
+                        <label for="#styles">Realista</label>
+                        <input type="checkbox" name="realista" id="realista" v-model="Realista"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Cartoon</label>
+                        <input type="checkbox" name="cartoon" id="cartoon" v-model="Cartoon"/>
+                    </div>
+                    <div>
+                        <label for="#styles">OldSchool</label>
+                        <input type="checkbox" name="oldschool" id="oldschool" v-model="OldSchool"/>
+                    </div>
+                    <div>
+                        <label for="#styles">3D tattoo</label>
+                        <input type="checkbox" name="3dtattoo" id="3dtattoo" v-model="dtattoo"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Puntillismo</label>
+                        <input type="checkbox" name="puntillismo" id="puntillismo" v-model="Puntillismo"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Blancos</label>
+                        <input type="checkbox" name="blancos" id="blancos" v-model="Blancos"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Minimalismo</label>
+                    <input type="checkbox" name="minimalism" id="minimalism" v-model="Minimalismo"/>
+                    </div>
+                    <div>
+                        <label for="#styles">NewSchool</label>
+                        <input type="checkbox" name="newschool" id="newschool" v-model="NewSchool"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Blackwork</label>
+                        <input type="checkbox" name="blackwork" id="blackwork" v-model="Blackwork"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Tribales</label>
+                        <input type="checkbox" name="japones" id="japones" v-model="Tribales"/>
+                    </div>
+                    <div>
+                        <label for="#styles">Geometrico</label>
+                        <input type="checkbox" name="japones" id="japones" v-model="Geometrico"/>
+                    </div>
+                </div>
+                <RouterLink to="/login" @click="allOff">Ya tienes cuenta? Inicie sesión aquí!</RouterLink>
+            </form>
+            <button @click="checkForm(true)">Registrarse</button>
+        </div>
     </div>
 </template>
 <script>
@@ -280,11 +284,12 @@
                 document.getElementById('tattooer').style.display = "none"
             },
             checkForm(tattooer){
+                console.log("si");
                 const passwordGood = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
                 const emailGood = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
 
-                this.validPass = passwordGood.test(this.password)
-                this.validEmail = emailGood.test(this.email)
+                this.validPass = passwordGood.test(this.passwordUser)
+                this.validEmail = emailGood.test(this.emailUser)
 
                 if(this.validPass && this.validEmail){
                     if(tattooer){
@@ -343,7 +348,9 @@
                     instagram: this.instagram,
                     facebook: this.facebook,
                     picture: document.getElementById("pictureTattooer").value
-                }).then(res => this.$store.state.currentId = res.data.id)
+                },
+                {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }}
+                ).then(res => this.$store.state.currentId = res.data.id)
                 this.newTattooer()
             },
             async newTattooer(){
@@ -352,20 +359,25 @@
                     password: this.password,
                     isTattooer: true,
                     tattooerId: this.$store.state.currentId
-                }).then(res => console.log(res))
+                },
+                {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }}
+                ).then(res => console.log(res))
                 this.$store.state.currentId = null
                 this.$router.push("/login")
             },
             async saveUser(){
+                console.log("prueba");
                 await axios.postForm("https://apispringboot-production-5a7a.up.railway.app/users/create",{
                     name: this.nameUser,
                     surname: this.surname,
                     username: this.username,
                     email: this.emailUser,
                     password: this.passwordUser,
-                    picture: document.getElementById("pictureUser").value,
+                    picture: "",
                     isTattooer: false
-                }).then(res => console.log(res))
+                }, 
+                {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }}
+                ).then(res => console.log(res))
                 this.$router.push("/login")
                 
             }
@@ -413,7 +425,7 @@
         text-align: center;
         margin-top: 20px;
     }
-    form{
+    .user{
         width: 90%;
         display: none;
         background-color: #D9D9D9;

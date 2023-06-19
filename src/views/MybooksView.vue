@@ -26,11 +26,11 @@
     export default{
         created(){
             if(this.$store.state.isUser == true){
-                axios.get("https://apispringboot-production-5a7a.up.railway.app/bookUser/"+this.$store.state.currentId)
+                axios.get("https://apispringboot-production-5a7a.up.railway.app/bookUser/"+this.$store.state.currentId, {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }})
                 .then(res => this.books = res.data)
             }
             else{
-                axios.get("https://apispringboot-production-5a7a.up.railway.app/bookTattooer/"+this.$store.state.currentId)
+                axios.get("https://apispringboot-production-5a7a.up.railway.app/bookTattooer/"+this.$store.state.currentId, {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }})
                 .then(res => this.books = res.data)
             }
         },
@@ -42,7 +42,7 @@
         },
         methods:{
             async citar(id){
-                await axios.get("https://apispringboot-production-5a7a.up.railway.app/users/"+id, `Bearer ${localStorage.getItem("token")}`)
+                await axios.get("https://apispringboot-production-5a7a.up.railway.app/users/"+id, {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }})
                 .then(res=> {
                     this.darCita(res.data)
                 })
@@ -52,7 +52,7 @@
                     user: user,
                     tattooer: this.$store.state.currentUser,
                     date: this.fecha
-                }, `Bearer ${localStorage.getItem("token")}`)
+                }, {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }})
             }
         }
     }

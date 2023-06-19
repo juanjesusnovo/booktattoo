@@ -3,30 +3,32 @@
         <h1 class="title">Inicia Sesion</h1>
         <img class="logobk" src="../assets/logoblanco.png" alt="logo booktattoo">
         <video src="../assets/videotattoo1.mp4" autoplay="true" muted="true" loop="true"></video>
-        <form>
-            <div>
-                <label for="#user">User:</label>
-                <input
-                    type="user"
-                    id="user"
-                    placeholder="user"
-                    v-model="this.user"
-                />
-            </div>
-            <div>
-                <label for="#password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    v-model="this.password"
-                />
-            </div>
-            <div class="buttons">
-                <RouterLink to="/register">No tienes cuenta? Registrate aquí!</RouterLink>
-            </div>
-        </form>
-        <button @click="login">enviar</button>
+        <div class="formulario">
+            <form>
+                <div>
+                    <label for="#user">User:</label>
+                    <input
+                        type="user"
+                        id="user"
+                        placeholder="user"
+                        v-model="this.user"
+                    />
+                </div>
+                <div>
+                    <label for="#password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        v-model="this.password"
+                    />
+                </div>
+                <div class="buttons">
+                    <RouterLink to="/register">No tienes cuenta? Registrate aquí!</RouterLink>
+                </div>
+            </form>
+            <button @click="login">enviar</button>
+        </div>
     </div>
 </template>
 <script>
@@ -41,7 +43,6 @@
         },
         methods:{    
             async login(){
-                console.log(this.user, this.password);
                 await axios.post("https://apispringboot-production-5a7a.up.railway.app/token",{},{
                     auth: {
                         username: this.user,
@@ -55,7 +56,7 @@
                 })
             },
             async getUser(token){
-                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/users/${this.user}`, { headers:{ Authorization : `Bearer ${token}` }})
+                await axios.get(`https://apispringboot-production-5a7a.up.railway.app/username/${this.user}`, { headers:{ Authorization : `Bearer ${token}` }})
                 .then(res => {
                     if(res.data.isTattooer == true){
                         this.getTattooer(res.data.tattooerId)
@@ -95,7 +96,7 @@
         text-align: center;
         margin-top: 50px;
     }
-    form{
+    .formulario{
         width: 90%;
         display: flex;
         background-color: #D9D9D9;
@@ -107,6 +108,17 @@
         min-height: 25vh;
         margin-bottom: 20px;
         opacity: 0.5;
+    }
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        min-height: 25vh;
+        margin-bottom: 20px;
     }
     form div{
         display: flex;

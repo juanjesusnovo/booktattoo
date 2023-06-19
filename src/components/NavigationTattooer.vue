@@ -17,7 +17,9 @@
                 await axios.post("https://apispringboot-production-5a7a.up.railway.app/book",{
                     user: this.$store.state.currentId,
                     tattooer: this.id
-                }).then(res=> console.log(res))
+                },
+                {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }}
+                ).then(res=> console.log(res))
             },
             goDetalles(){
                 this.$router.push(`/tattooer/${this.id}`)

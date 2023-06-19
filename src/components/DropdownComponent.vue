@@ -12,6 +12,7 @@
             <li v-else><RouterLink  to="/tattooerprofile" @click="check">Perfil</RouterLink></li>
             <li v-if="!$store.state.isUser"><RouterLink to="/myportfolio">Portfolio</RouterLink></li>
             <li><RouterLink  to="/mybooks" @click="check">Citas</RouterLink></li>
+            <li><button @click="logout">LogOut</button></li>
         </ul>
         <ul class="menuDesplegado" v-else>
             <li><RouterLink  to="/login" @click="check">Iniciar Sesion</RouterLink></li>
@@ -24,11 +25,25 @@
         methods: {
             check(){
                 document.querySelector("#menuDesplegable").checked = false
+            },
+            logout(){
+                this.$store.commit("setLogout")
+                this.$router.push("/")
             }
         }
     }
 </script>
 <style scoped>
+    button {
+        background: none;
+        border: 0;
+        color: inherit;
+        /* cursor: default; */
+        font: inherit;
+        line-height: normal;
+        overflow: visible;
+        padding: 0;
+    }
     .menuCheck[type=checkbox]{
         display: none
     }
